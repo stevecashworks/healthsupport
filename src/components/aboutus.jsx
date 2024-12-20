@@ -1,60 +1,13 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Container, Row, Col } from "react-bootstrap";
 import doctorBG from "../assets/bg-doctor.png";
 import Services from "./services";
 // Animation for fade-in effect
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
 
-const fadeInRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
 const Highlight = styled.span`
   color: #1abc9c; /* Teal highlight */
   font-weight: bold;
-`;
-const StyledCard = styled.div`
-  text-align: center;
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  animation: ${fadeInUp} 0.8s ease forwards;
-  .circle-shape {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-  }
-  span {
-    font-size: 24px;
-  }
-  p {
-    margin: 0;
-    font-size: 18px;
-    span {
-      font-weight: bold;
-    }
-  }
 `;
 
 const SectionTitle = styled.h1`
@@ -83,9 +36,7 @@ const Description = styled.p`
   margin-bottom: 1.5rem;
 `;
 
-const ImageContainer = styled.div`
-  animation: ${fadeInRight} 0.8s ease forwards;
-`;
+const ImageContainer = styled.div``;
 
 const PageSection = styled.div`
   padding: 3rem 0;
@@ -99,12 +50,14 @@ const HealthCenter = () => {
         <Container>
           <Services />
         </Container>
-      </PageSection>
 
-      <PageSection>
         <Container>
           <Row className="align-items-center">
-            <Col lg={6} className="py-3">
+            <Col
+              lg={6}
+              className="py-3 fadeinRight"
+              style={{ paddingLeft: "20px" }}
+            >
               <SectionTitle>About Us</SectionTitle>
               <Description className="mb-6">
                 At <Highlight>HealthSupport</Highlight>, we are dedicated to
@@ -117,7 +70,7 @@ const HealthCenter = () => {
               </Description>
               <Button href="#services">Learn More</Button>
             </Col>
-            <Col lg={6}>
+            <Col lg={6} className="fadeinRight">
               <ImageContainer id="aboutImage">
                 <img src={doctorBG} alt="Health Center" className="img-fluid" />
               </ImageContainer>

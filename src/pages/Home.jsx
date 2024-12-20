@@ -1,9 +1,16 @@
 import styled, { keyframes } from "styled-components";
 import Header from "../components/header";
 import backgroundVid from "../assets/backgroundVid.mp4";
-import About from "../components/about";
 import { useEffect, useState } from "react";
 import HealthCenter from "../components/aboutus";
+import DoctorsCarousel from "../components/doctors";
+import Testimonials from "../components/tetsimonials";
+import Partners from "../components/partners";
+import Feedback from "../components/feedback";
+import Footer from "../components/footer";
+import Plans from "../components/plans";
+import observeClass, { animatedClasses } from "../aos";
+
 const Container = styled.div`
   width: 100vw;
 `;
@@ -93,6 +100,11 @@ const Cursor = styled.span`
 `;
 
 const Home = () => {
+  useEffect(() => {
+    animatedClasses.forEach((className) => {
+      observeClass(className);
+    });
+  }, []);
   const completeText =
     "Your well-being is our priority. Start your journey with us today.";
   const [char, setChar] = useState(0);
@@ -108,7 +120,7 @@ const Home = () => {
         <Video src={backgroundVid} autoPlay loop muted />
         <Shade />
         <Content>
-          <h1>Welcome to HealthSupport</h1>
+          <h1 className="fadeinUp">Welcome to HealthSupport</h1>
           <p>
             {completeText.substr(0, char)}
             <Cursor>|</Cursor>
@@ -117,7 +129,24 @@ const Home = () => {
         </Content>
       </Hero>
       <HealthCenter />
-      <About />
+      <Plans />
+      <DoctorsCarousel />
+      <Partners />
+      <Testimonials />
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d212145.78364952744!2d-84.6117196!3d33.818045!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5045d6993098d%3A0x66fede2f990b630b!2sAtlanta%2C%20GA%2C%20USA!5e0!3m2!1sen!2sng!4v1734686788470!5m2!1sen!2sng"
+        style={{
+          border: 0,
+          margin: "20px auto",
+          width: "100%",
+          height: "400px",
+        }}
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+      <Feedback />
+      <Footer />
     </Container>
   );
 };

@@ -4,7 +4,6 @@ import { Row, Col } from "react-bootstrap";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ShieldIcon from "@mui/icons-material/Shield";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import useIntersection from "../hooks/useIntersection";
 import "./services.css";
 // Animation for fade-in effect
 const fadeInUp = keyframes`
@@ -49,15 +48,8 @@ const CardText = styled.p`
 `;
 
 const Services = () => {
-  const serviceIsVisible = useIntersection("services");
-
   return (
-    <Row
-      className={
-        "justify-content-center" + (serviceIsVisible ? "service-visible" : "")
-      }
-      id="services"
-    >
+    <Row className="justify-content-center fadeinUp" id="services">
       <Col md={4} className="py-3">
         <CardService>
           <CircleShape className="bg-secondary">
