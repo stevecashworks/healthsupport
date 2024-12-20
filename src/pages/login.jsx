@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import responsive from "../responsive.js";
 const developmentApiEntryPoint = "#";
 const Nav = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  ${responsive("tablet", { display: "none" })};
 `;
 const CreditCard = styled.div`
   background-color: rgba(0, 0, 0, 0.2); /* Set a transparent background color */
@@ -21,9 +23,7 @@ const Logo = styled.div`
   align-items: center;
   gap: 20px;
 `;
-const LogoImg = styled.img`
-  width: 30px;
-`;
+
 const Container = styled.div`
   display: grid;
   place-items: center;
@@ -121,6 +121,9 @@ const Next = styled.button`
   height: 30px;
   border-radius: 10px;
 `;
+export const HighLight = styled.span`
+  color: #1abc9c;
+`;
 const logVals = (email, password, fn) => {
   fn("Loading ...");
   try {
@@ -158,8 +161,10 @@ const Login = () => {
     <div className="register-con">
       <Header>
         <Logo>
-          <LogoImg src={logo} />
-          <LogoText>TFMBank</LogoText>
+          <LogoText>
+            Health
+            <HighLight>Support</HighLight>
+          </LogoText>
         </Logo>
         <Nav>
           {navLinks.map((x) => (
@@ -185,8 +190,10 @@ const Login = () => {
           <CreditCard>
             <Visa style={{ display: "flex", justifyContent: "center" }}>
               <Logo style={{ margin: "10px auto" }}>
-                <LogoImg src={logo} />
-                <LogoText>TFMBank</LogoText>
+                <LogoText>
+                  Health
+                  <HighLight>Support</HighLight>
+                </LogoText>
               </Logo>
             </Visa>
 
