@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import responsive from "../responsive.js";
+import { RiMenu4Line } from "react-icons/ri";
+import { AiOutlineClose } from "react-icons/ai";
 const developmentApiEntryPoint = "#";
 const Nav = styled.div`
   display: flex;
@@ -17,6 +19,7 @@ const CreditCard = styled.div`
   padding: 20px;
   width: 250px;
   height: 400px;
+  ${responsive("tablet", { display: "none" })};
 `;
 const Logo = styled.div`
   display: flex;
@@ -69,6 +72,7 @@ const Anc = styled.a`
 const BtnsCon = styled.div`
   display: flex;
   gap: 20px;
+  ${responsive("tablet", { display: "none" })};
 `;
 const Btn = styled.button`
   color: white;
@@ -94,6 +98,7 @@ const FormCon = styled.div`
   width: 500px;
   position: relative;
   overflow-x: hidden;
+  ${responsive("tablet", { height: "500px" })}
 `;
 const FormSubCon = styled.div`
   padding-left: 30px;
@@ -151,12 +156,42 @@ const CreditBottom = styled.div`
   font-size: 12px;
   text-align: center;
 `;
+const HamCon = styled.div`
+  display: none;
+  ${responsive("tablet", { display: "flex" })}
+`;
+const MobileNav = styled.div`
+  width: 100vw;
+  height: 400px;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  font-weight: bold;
+  display: none;
+  transform: scaleY(${(props) => (props.open ? 1 : 0)});
+  transition: all 0.5s ease;
+  background-color: rgb(0, 0, 0, 0.7);
+  position: absolute;
+  top: 70px;
+  gap: 15px;
+  flex-direction: column;
+  text-transform: capitalize;
+  z-index: 4;
+  ${responsive("tablet", { display: "flex" })};
+`;
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [message, setMessage] = useState("");
+  const [menuOpen, setMenuOPen] = useState(false);
+  const HamButton = menuOpen ? AiOutlineClose : RiMenu4Line;
+  const links = [
+    { title: "home", path: "/home" },
+    { title: "register", path: "/register" },
+  ];
+
   return (
     <div className="register-con">
       <Header>
@@ -182,7 +217,15 @@ const Login = () => {
             Login
           </Btn>
         </BtnsCon>
+        <HamCon onClick={() => setMenuOPen(!menuOpen)}>
+          <HamButton style={{ fontSize: "23px" }} />
+        </HamCon>
       </Header>
+      <MobileNav open={menuOpen}>
+        {links.map((link) => {
+          return <Anc href={link.path}>{link.title}</Anc>;
+        })}
+      </MobileNav>
       <Container>
         <div className="blob1"></div>
         <div className="blob2"></div>
@@ -213,11 +256,12 @@ const Login = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label htmlFor="last-name">password</Label>
+                <Label htmlFor="last-name">Password</Label>
                 <input
                   className="nameInp"
                   id="last-name"
                   name=""
+                  type="password"
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
